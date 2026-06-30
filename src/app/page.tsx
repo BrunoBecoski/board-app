@@ -2,6 +2,7 @@ import { ArchiveIcon, MessageCircleIcon, ThumbsUpIcon } from "lucide-react"
 
 import { Section } from "@/components/sections"
 import { Card } from "@/components/card"
+import { Button } from "@/components/button"
 
 export default function Home() {
   return (
@@ -25,21 +26,15 @@ export default function Home() {
               </Card.Header>
 
               <Card.Footer>
-                <button
-                  type="button"
-                  className="text-navy-100 flex items-center gap-2 rounded-lg px-2.5 py-1 bg-navy-600 cursor-pointer hover:bg-navy-400 transition-colors"
-                >
+                <Button>
                   <ThumbsUpIcon className="size-3" />
                   <span className="text-sm">53</span>
-                </button>
+                </Button>
 
-                <button
-                  type="button"
-                  className="text-navy-100 flex items-center gap-2 rounded-lg px-2.5 py-1 bg-navy-600 cursor-pointer hover:bg-navy-400 transition-colors"
-                >
+                <Button>
                   <MessageCircleIcon className="size-3" />
                   <span className="text-sm">23</span>
-                </button>
+                </Button>
               </Card.Footer>
             </Card.Root>
 
@@ -50,21 +45,15 @@ export default function Home() {
               </Card.Header>
 
               <Card.Footer>
-                <button
-                  type="button"
-                  className="text-navy-100 flex items-center gap-2 rounded-lg px-2.5 py-1 bg-navy-600 cursor-pointer hover:bg-navy-400 transition-colors"
-                >
+                <Button>
                   <ThumbsUpIcon className="size-3" />
                   <span className="text-sm">12</span>
-                </button>
+                </Button>
 
-                <button
-                  type="button"
-                  className="text-navy-100 flex items-center gap-2 rounded-lg px-2.5 py-1 bg-navy-600 cursor-pointer hover:bg-navy-400 transition-colors"
-                >
+                <Button>
                   <MessageCircleIcon className="size-3" />
                   <span className="text-sm">4</span>
-                </button>
+                </Button>
               </Card.Footer>
             </Card.Root>
           </Section.Content>
