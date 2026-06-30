@@ -1,6 +1,7 @@
-import { ArchiveIcon } from "lucide-react"
+import { ArchiveIcon, MessageCircleIcon, ThumbsUpIcon } from "lucide-react"
 
 import { Section } from "@/components/sections"
+import { Card } from "@/components/card"
 
 export default function Home() {
   return (
@@ -17,9 +18,55 @@ export default function Home() {
           </Section.Header>
 
           <Section.Content>
-            <div>card 1</div>
-            <div>card 2</div>
-            <div>card 3</div>
+            <Card.Root href="/versao-mobile">
+              <Card.Header>
+                <Card.Number>DES-067</Card.Number>
+                <Card.Title>Implementar versão mobile</Card.Title>
+              </Card.Header>
+
+              <Card.Footer>
+                <button
+                  type="button"
+                  className="text-navy-100 flex items-center gap-2 rounded-lg px-2.5 py-1 bg-navy-600 cursor-pointer hover:bg-navy-400 transition-colors"
+                >
+                  <ThumbsUpIcon className="size-3" />
+                  <span className="text-sm">53</span>
+                </button>
+
+                <button
+                  type="button"
+                  className="text-navy-100 flex items-center gap-2 rounded-lg px-2.5 py-1 bg-navy-600 cursor-pointer hover:bg-navy-400 transition-colors"
+                >
+                  <MessageCircleIcon className="size-3" />
+                  <span className="text-sm">23</span>
+                </button>
+              </Card.Footer>
+            </Card.Root>
+
+            <Card.Root href="/cartao-de-credito">
+              <Card.Header>
+                <Card.Number>ECO-001</Card.Number>
+                <Card.Title>Implementar cartão de crédito</Card.Title>
+              </Card.Header>
+
+              <Card.Footer>
+                <button
+                  type="button"
+                  className="text-navy-100 flex items-center gap-2 rounded-lg px-2.5 py-1 bg-navy-600 cursor-pointer hover:bg-navy-400 transition-colors"
+                >
+                  <ThumbsUpIcon className="size-3" />
+                  <span className="text-sm">12</span>
+                </button>
+
+                <button
+                  type="button"
+                  className="text-navy-100 flex items-center gap-2 rounded-lg px-2.5 py-1 bg-navy-600 cursor-pointer hover:bg-navy-400 transition-colors"
+                >
+                  <MessageCircleIcon className="size-3" />
+                  <span className="text-sm">4</span>
+                </button>
+              </Card.Footer>
+            </Card.Root>
           </Section.Content>
         </Section.Root>
       </main>
