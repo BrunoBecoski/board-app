@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import { NuqsAdapter } from "nuqs/adapters/next/app"
 import { Inter } from "next/font/google"
 
 import "./globals.css"
@@ -19,7 +20,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR" className={interFont.className}>
-      <body className="bg-navy-950 text-navy-50 antialiased">{children}</body>
+      <body className="bg-navy-950 text-navy-50 antialiased">
+        <NuqsAdapter>{children}</NuqsAdapter>
+      </body>
     </html>
   )
 }

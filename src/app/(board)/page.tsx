@@ -4,9 +4,17 @@ import { Section } from "@/components/sections"
 import { Card } from "@/components/card"
 import { Button } from "@/components/button"
 
-export default function Home() {
+interface BoardProps {
+  searchParams: Promise<{ busca?: string }>
+}
+
+export default async function Board({ searchParams }: BoardProps) {
+  const { busca } = await searchParams
+
+  console.log(busca)
+
   return (
-    <main className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-5 flex-1 items-stretch">
+    <main className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 flex-1 items-stretch">
       <Section.Root>
         <Section.Header>
           <Section.Title>
