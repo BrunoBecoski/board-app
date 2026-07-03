@@ -6,7 +6,7 @@ import { Card } from "@/components/card"
 import { Button } from "@/components/button"
 
 interface BoardProps {
-  searchParams: Promise<{ busca?: string }>
+  searchParams: Promise<{ search?: string }>
 }
 
 export const metadata: Metadata = {
@@ -14,9 +14,9 @@ export const metadata: Metadata = {
 }
 
 export default async function Board({ searchParams }: BoardProps) {
-  const { busca } = await searchParams
+  const { search } = await searchParams
 
-  console.log(busca)
+  console.log(search)
 
   return (
     <main className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 flex-1 items-stretch">
