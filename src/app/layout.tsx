@@ -1,12 +1,16 @@
-import type { Metadata } from "next"
+import { Metadata } from "next"
 import { NuqsAdapter } from "nuqs/adapters/next/app"
 import { Inter } from "next/font/google"
 
 import "./globals.css"
 
 export const metadata: Metadata = {
-  title: "Board App",
-  description: "Board de roadmap público",
+  title: {
+    template: "%s | Product Roadmap",
+    default: "Product Roadmap",
+  },
+  description:
+    "Siga o progresso do desenvolvimento de recurso da nossa plataforma",
 }
 
 const interFont = Inter({

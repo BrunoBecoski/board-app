@@ -1,3 +1,4 @@
+import { Metadata } from "next"
 import { ArchiveIcon, MessageCircleIcon, ThumbsUpIcon } from "lucide-react"
 
 import { Section } from "@/components/sections"
@@ -6,6 +7,10 @@ import { Button } from "@/components/button"
 
 interface BoardProps {
   searchParams: Promise<{ busca?: string }>
+}
+
+export const metadata: Metadata = {
+  title: "Board",
 }
 
 export default async function Board({ searchParams }: BoardProps) {
@@ -19,7 +24,7 @@ export default async function Board({ searchParams }: BoardProps) {
         <Section.Header>
           <Section.Title>
             <ArchiveIcon className="size-3" />
-            Backlog (pendências)
+            Backlog
           </Section.Title>
 
           <Section.IssueCount>67</Section.IssueCount>
