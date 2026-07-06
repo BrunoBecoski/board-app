@@ -9,7 +9,9 @@ import { Input } from "@/components/input"
 export function SearchInput() {
   const [search, setSearch] = useQueryState(
     "search",
-    parseAsString.withDefault(""),
+    parseAsString.withDefault("").withOptions({
+      shallow: false,
+    }),
   )
 
   function handleSearchUpdate(event: ChangeEvent<HTMLInputElement>) {
