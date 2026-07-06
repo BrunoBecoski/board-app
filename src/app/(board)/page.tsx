@@ -1,6 +1,7 @@
 import { Metadata } from "next"
 import { ArchiveIcon, MessageCircleIcon, ThumbsUpIcon } from "lucide-react"
 
+import { listIssues } from "@/http/list-issues"
 import { Section } from "@/components/sections"
 import { Card } from "@/components/card"
 import { Button } from "@/components/button"
@@ -16,7 +17,7 @@ export const metadata: Metadata = {
 export default async function Board({ searchParams }: BoardProps) {
   const { search } = await searchParams
 
-  console.log(search)
+  const issues = await listIssues()
 
   return (
     <main className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 flex-1 items-stretch">
@@ -27,47 +28,152 @@ export default async function Board({ searchParams }: BoardProps) {
             Backlog
           </Section.Title>
 
-          <Section.IssueCount>67</Section.IssueCount>
+          <Section.IssueCount>{issues.backlog.length}</Section.IssueCount>
         </Section.Header>
 
         <Section.Content>
-          <Card.Root href="/versao-mobile">
-            <Card.Header>
-              <Card.Number>DES-067</Card.Number>
-              <Card.Title>Implementar versão mobile</Card.Title>
-            </Card.Header>
+          {issues.backlog.map((issue) => (
+            <Card.Root
+              key={issue.id}
+              href={`/${issue.title.toLocaleLowerCase()}`}
+            >
+              <Card.Header>
+                <Card.Number>
+                  ISS-{issue.issueNumber.toString().padStart(3, "0")}
+                </Card.Number>
+                <Card.Title>{issue.title}</Card.Title>
+              </Card.Header>
 
-            <Card.Footer>
-              <Button>
-                <ThumbsUpIcon className="size-3" />
-                <span className="text-sm">53</span>
-              </Button>
+              <Card.Footer>
+                <Button>
+                  <ThumbsUpIcon className="size-3" />
+                  <span className="text-sm">10</span>
+                </Button>
 
-              <Button>
-                <MessageCircleIcon className="size-3" />
-                <span className="text-sm">23</span>
-              </Button>
-            </Card.Footer>
-          </Card.Root>
+                <Button>
+                  <MessageCircleIcon className="size-3" />
+                  <span className="text-sm">{issue.comments}</span>
+                </Button>
+              </Card.Footer>
+            </Card.Root>
+          ))}
+        </Section.Content>
+      </Section.Root>
 
-          <Card.Root href="/cartao-de-credito">
-            <Card.Header>
-              <Card.Number>ECO-001</Card.Number>
-              <Card.Title>Implementar cartão de crédito</Card.Title>
-            </Card.Header>
+      <Section.Root>
+        <Section.Header>
+          <Section.Title>
+            <ArchiveIcon className="size-3" />
+            Todo
+          </Section.Title>
 
-            <Card.Footer>
-              <Button>
-                <ThumbsUpIcon className="size-3" />
-                <span className="text-sm">12</span>
-              </Button>
+          <Section.IssueCount>{issues.todo.length}</Section.IssueCount>
+        </Section.Header>
 
-              <Button>
-                <MessageCircleIcon className="size-3" />
-                <span className="text-sm">4</span>
-              </Button>
-            </Card.Footer>
-          </Card.Root>
+        <Section.Content>
+          {issues.todo.map((issue) => (
+            <Card.Root
+              key={issue.id}
+              href={`/${issue.title.toLocaleLowerCase()}`}
+            >
+              <Card.Header>
+                <Card.Number>
+                  ISS-{issue.issueNumber.toString().padStart(3, "0")}
+                </Card.Number>
+                <Card.Title>{issue.title}</Card.Title>
+              </Card.Header>
+
+              <Card.Footer>
+                <Button>
+                  <ThumbsUpIcon className="size-3" />
+                  <span className="text-sm">10</span>
+                </Button>
+
+                <Button>
+                  <MessageCircleIcon className="size-3" />
+                  <span className="text-sm">{issue.comments}</span>
+                </Button>
+              </Card.Footer>
+            </Card.Root>
+          ))}
+        </Section.Content>
+      </Section.Root>
+
+      <Section.Root>
+        <Section.Header>
+          <Section.Title>
+            <ArchiveIcon className="size-3" />
+            In Progress
+          </Section.Title>
+
+          <Section.IssueCount>{issues.in_progress.length}</Section.IssueCount>
+        </Section.Header>
+
+        <Section.Content>
+          {issues.in_progress.map((issue) => (
+            <Card.Root
+              key={issue.id}
+              href={`/${issue.title.toLocaleLowerCase()}`}
+            >
+              <Card.Header>
+                <Card.Number>
+                  ISS-{issue.issueNumber.toString().padStart(3, "0")}
+                </Card.Number>
+                <Card.Title>{issue.title}</Card.Title>
+              </Card.Header>
+
+              <Card.Footer>
+                <Button>
+                  <ThumbsUpIcon className="size-3" />
+                  <span className="text-sm">10</span>
+                </Button>
+
+                <Button>
+                  <MessageCircleIcon className="size-3" />
+                  <span className="text-sm">{issue.comments}</span>
+                </Button>
+              </Card.Footer>
+            </Card.Root>
+          ))}
+        </Section.Content>
+      </Section.Root>
+
+      <Section.Root>
+        <Section.Header>
+          <Section.Title>
+            <ArchiveIcon className="size-3" />
+            Done
+          </Section.Title>
+
+          <Section.IssueCount>{issues.done.length}</Section.IssueCount>
+        </Section.Header>
+
+        <Section.Content>
+          {issues.done.map((issue) => (
+            <Card.Root
+              key={issue.id}
+              href={`/${issue.title.toLocaleLowerCase()}`}
+            >
+              <Card.Header>
+                <Card.Number>
+                  ISS-{issue.issueNumber.toString().padStart(3, "0")}
+                </Card.Number>
+                <Card.Title>{issue.title}</Card.Title>
+              </Card.Header>
+
+              <Card.Footer>
+                <Button>
+                  <ThumbsUpIcon className="size-3" />
+                  <span className="text-sm">10</span>
+                </Button>
+
+                <Button>
+                  <MessageCircleIcon className="size-3" />
+                  <span className="text-sm">{issue.comments}</span>
+                </Button>
+              </Card.Footer>
+            </Card.Root>
+          ))}
         </Section.Content>
       </Section.Root>
     </main>
