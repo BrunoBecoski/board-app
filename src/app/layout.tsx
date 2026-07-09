@@ -2,6 +2,7 @@ import { Metadata } from "next"
 import { NuqsAdapter } from "nuqs/adapters/next/app"
 import { Inter } from "next/font/google"
 
+import { ReactQueryProvider } from "@/lib/react-query"
 import "./globals.css"
 
 export const metadata: Metadata = {
@@ -25,7 +26,9 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" className={interFont.className}>
       <body className="bg-navy-950 text-navy-50 antialiased">
-        <NuqsAdapter>{children}</NuqsAdapter>
+        <ReactQueryProvider>
+          <NuqsAdapter>{children}</NuqsAdapter>
+        </ReactQueryProvider>
       </body>
     </html>
   )
