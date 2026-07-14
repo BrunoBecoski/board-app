@@ -7,7 +7,7 @@ import { ArchiveIcon, MessageCircleIcon } from "lucide-react"
 
 import type { IssuesListResponseSchema } from "@/api/routes/list-issues"
 import { getIssueInteractions } from "@/http/get-issue-interactions"
-import { Section } from "@/components/sections"
+import { Section } from "@/components/section"
 import { Card } from "@/components/card"
 import { Button } from "@/components/button"
 import { LikeButton } from "@/components/like-button"
@@ -17,7 +17,7 @@ interface BoardContentProps {
 }
 
 export function BoardContent({ issues }: BoardContentProps) {
-  const allIssueIds = [
+  const allIssuesIds = [
     ...issues.backlog.map((issue) => issue.id),
     ...issues.todo.map((issue) => issue.id),
     ...issues.in_progress.map((issue) => issue.id),
@@ -25,8 +25,8 @@ export function BoardContent({ issues }: BoardContentProps) {
   ]
 
   const { data: interactionsData, isLoading: isLoadingInterctions } = useQuery({
-    queryKey: ["issue-like", allIssueIds.sort().join(",")],
-    queryFn: () => getIssueInteractions({ issueIds: allIssueIds }),
+    queryKey: ["issue-likes", allIssuesIds.sort().join(",")],
+    queryFn: () => getIssueInteractions({ issueIds: allIssuesIds }),
   })
 
   const interactions = useMemo(() => {
