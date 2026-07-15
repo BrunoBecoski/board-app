@@ -11,7 +11,7 @@ interface CreateCommentParams {
   text: string
 }
 
-export async function CreateComment({ issueId, text }: CreateCommentParams) {
+export async function createComment({ issueId, text }: CreateCommentParams) {
   const url = new URL(
     `/api/issues/${issueId}/comments`,
     clientEnv.NEXT_PUBLIC_API_URL,

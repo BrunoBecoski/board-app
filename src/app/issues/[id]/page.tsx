@@ -1,16 +1,9 @@
-import { Suspense } from "react"
 import type { Metadata } from "next"
-import { ArchiveIcon, MoveLeftIcon } from "lucide-react"
+import { MoveLeftIcon } from "lucide-react"
 import Link from "next/link"
 
 import { getIssue } from "@/http/get-issue"
-import { IssueCommentsList } from "./issue-components/issue-comments-list"
-import { IssueCommentsSkeleton } from "./issue-components/issue-comments-skeleton"
-import { IssueLikeButton } from "./issue-like-button"
-import { IssueCommentForm } from "./issue-components/issue-comment-form"
-import { CreateComment } from "@/http/create-comment"
-import { authClient } from "@/lib/auth-client"
-import { headers } from "next/headers"
+import { IssueDetails } from "./issue-components/issue-details"
 
 interface IssuePageProps {
   params: Promise<{ id: string }>
@@ -28,31 +21,8 @@ export const generateMetadata = async ({
   }
 }
 
-const statusLabels = {
-  backlog: "Backlog",
-  todo: "To do",
-  in_progress: "In Progress",
-  done: "Done",
-} as const
-
 export default async function IssuePage({ params }: IssuePageProps) {
   const { id } = await params
-
-  const { data: session } = await authClient.getSession({
-    fetchOptions: {
-      headers: await headers(),
-    },
-  })
-
-  const issue = await getIssue({ id })
-
-  const isAuthenticated = !!session?.user
-
-  async function handleCreateComment(text: string) {
-    "use server"
-
-    await CreateComment({ issueId: id, text })
-  }
 
   return (
     <main className="max-w-225 mx-auto w-full flex flex-col gap-4 p-6 bg-navy-800 border-[0.5px] border-navy-500 rounded-xl">
@@ -64,36 +34,7 @@ export default async function IssuePage({ params }: IssuePageProps) {
         <span className="text-xs">Voltar ao Board</span>
       </Link>
 
-      <div className="flex items-center gap-2">
-        <span className="bg-navy-700 rounded-lg px-3 py-1.5 flex items-center gap-2 text-xs">
-          <ArchiveIcon className="size-3" />
-          {statusLabels[issue.status]}
-        </span>
-
-        <IssueLikeButton issueId={issue.id} />
-      </div>
-
-      <div className="space-y-2">
-        <h1 className="font-semibold text-2xl">{issue.title}</h1>
-        <p className="text-navy-100 text-sm leading-relaxed">
-          {issue.description}
-        </p>
-      </div>
-
-      <div className="flex flex-col gap-2">
-        <span className="font-semibold">Comentários</span>
-
-        <IssueCommentForm
-          onCreateComment={handleCreateComment}
-          isAuthenticated={isAuthenticated}
-        />
-
-        <div className="mt-3">
-          <Suspense fallback={<IssueCommentsSkeleton />}>
-            <IssueCommentsList issueId={issue.id} />
-          </Suspense>
-        </div>
-      </div>
+      <IssueDetails issueId={id} />
     </main>
   )
 }
