@@ -7,7 +7,7 @@ function SectionRoot({ className, ...props }: SectionRootProps) {
   return (
     <div
       className={twMerge(
-        "bg-navy-800 rounded-xl border-[0.5px] border-navy-500 pt-3 flex flex-col gap-1 relative",
+        "bg-navy-800 rounded-xl border-[0.5px] border-navy-500 pt-3 flex flex-col gap-1 relative mix-w-80",
         className,
       )}
       {...props}

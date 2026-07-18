@@ -50,7 +50,12 @@ export async function IssueDetails({ issueId }: IssueDetailsProps) {
       </div>
 
       <div className="space-y-2">
-        <h1 className="font-semibold text-2xl">{issue.title}</h1>
+        <div className="flex  items-start gap-2 justify-between">
+          <h1 className="font-semibold text-2xl">{issue.title}</h1>
+          <span className=" text-navy-200 text-nowrap">
+            ISS-{issue.issueNumber.toString().padStart(3, "0")}
+          </span>
+        </div>
         <p className="text-navy-100 text-sm leading-relaxed">
           {issue.description}
         </p>

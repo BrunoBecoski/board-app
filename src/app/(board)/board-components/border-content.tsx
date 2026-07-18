@@ -46,7 +46,7 @@ export function BoardContent({ issues }: BoardContentProps) {
   }, [interactionsData])
 
   return (
-    <main className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 flex-1 items-stretch">
+    <main className="grid grid-cols-[repeat(4,minmax(320px,1fr))] gap-5 flex-1 items-stretch overflow-x-scroll scrollbar scrollbar-thumb-navy-500 scrollbar-track-transparent">
       <Section.Root>
         <Section.Header>
           <Section.Title>
